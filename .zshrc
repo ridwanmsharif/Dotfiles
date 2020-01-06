@@ -1,201 +1,130 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+  export ZSH=/home/ridwanmsharif/.oh-my-zsh
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="robbyrussell"
+
+# [[ $TERM != "screen"  ]] && exec tmux
+
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  git
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
 #
-export TERM="xterm-256color"
-# Executes commands at the start of an interactive session.
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1"  ] && [ -s $BASE16_SHELL/profile_helper.sh  ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-# Customize to your needs...
-export LANG="en_US.UTF-8"
+eval `dircolors ~/.dir_colors/dircolors`
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true # POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status rbenv)
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{cyan}\u256D\u2500%f"
-POWERLEVEL9K_MULTILINE_SECOND_PROMPT_PREFIX="%F{014}\u2570%F{cyan} ❯%F{073}❯%F{109}❯%f "
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir vcs)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+PATH="$PATH:/usr/local/go/bin"
+GOROOT="$HOME/go"
+PATH="$PATH:$GOROOT/bin"
+export GOPATH="$HOME/Software"
+export PATH="$PATH:$GOPATH/bin"
+export PATH=$HOME/sys161/bin:$HOME/sys161/tools/bin:$PATH 
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/bin:/usr/local/bin:/usr/local/opt/texinfo/bin:$HOME/sys161/bin:$HOME/sys161/tools/bin:$PATH
+export PATH="$PATH:$GOPATH/native/clion-2019.2.1/bin"
 
-# Customize to your needs...
-
-# Start rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/dev/python/ocTerminal:$PATH"
-# eval "$(rbenv init -)"
-
-# Add homebrew to the completion path
-fpath=("/usr/local/bin/" $fpath)
-
-# why would you type 'cd dir' if you could just type 'dir'?
-setopt AUTO_CD
-
-# Now we can pipe to multiple outputs!
-setopt MULTIOS
-
-# This makes cd=pushd
-setopt AUTO_PUSHD
-
-# This will use named dirs when possible
-setopt AUTO_NAME_DIRS
-
-# If we have a glob this will expand it
-setopt GLOB_COMPLETE
-setopt PUSHD_MINUS
-
-# No more annoying pushd messages...
-# setopt PUSHD_SILENT
-
-# blank pushd goes to home
-setopt PUSHD_TO_HOME
-
-# this will ignore multiple directories for the stack.  Useful?  I dunno.
-setopt PUSHD_IGNORE_DUPS
-
-# 10 second wait if you do something that will delete everything.  I wish I'd had this before...
-setopt RM_STAR_WAIT
-
-# use magic (this is default, but it can't hurt!)
-setopt ZLE
-
-setopt NO_HUP
-
-# only fools wouldn't do this ;-)
-export EDITOR="vim"
-export GIT_EDITOR=vim
-
-setopt IGNORE_EOF
-
-# If I could disable Ctrl-s completely I would!
-setopt NO_FLOW_CONTROL
-
-# Keep echo "station" > station from clobbering station
-setopt NO_CLOBBER
-
-# Case insensitive globbing
-setopt NO_CASE_GLOB
-
-# Be Reasonable!
-setopt NUMERIC_GLOB_SORT
-
-# I don't know why I never set this before.
-setopt EXTENDED_GLOB
-
-# hows about arrays be awesome?  (that is, frew${cool}frew has frew surrounding all the variables, not just first and last
-setopt RC_EXPAND_PARAM
-
-# Who doesn't want home and end to work?
-bindkey '\e[1~' beginning-of-line
-bindkey '\e[4~' end-of-line
-
-# Incremental search is elite!
-bindkey -M vicmd "/" history-incremental-search-backward
-bindkey -M vicmd "?" history-incremental-search-forward
-
-# Search based on what you typed in already
-bindkey -M vicmd "//" history-beginning-search-backward
-bindkey -M vicmd "??" history-beginning-search-forward
-
-bindkey "\eOP" run-help
-
-# oh wow!  This is killer...  try it!
-bindkey -M vicmd "q" push-line
-
-# it's like, space AND completion.  Gnarlbot.
-bindkey -M viins ' ' magic-space
-
-# zsh-autosuggestions
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# zplug
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
-zplug "supercrabtree/k"
-zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
-alias fix='rm ~/.zcondump*;exec zsh;'
-
-# export TERM
-# export PATH
-
-##########################
-# Aliases
-##########################
-alias ll='exa -bghHliSFa'
-alias py='python'
-alias tmux='tmux -2'
-alias startKwm='brew services start kwm'
-alias stopKwm='brew services stop kwm'
-alias gitset='git push --set-upstream'
-if [ -n $TMUX  ]; then
-    alias vim="TERM=screen-256color vim"
-fi
-alias disableChrome='defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool FALSE'
-
-
-# ============
-# GIT ALIASES
-# ============
-alias add='git add'
-alias checkout='git checkout'
-alias clone='git clone'
-alias commit='git commit'
-alias prebase='git pull rebase'
-alias pull='git pull'
-alias push='git push'
-alias stash='git stash'
-alias status='git status'
-
-alias k='kubectl'
-alias rtest='bundle exec rspec'
-alias s='fast_git_branch_select'
-alias ts='fast_tmux_session_select'
-alias gpu='push_upstram_origin'
-alias ccat='/bin/cat'
-alias cat='/usr/local/bin/ccat'
-alias mk='make'
-alias vim='nvim'
-alias kali='docker run -it --rm kalilinux/kali-linux-docker'
-alias ubuntu='docker run -it --rm dockerfile/ubuntu'
-# Cheat => enabling syntax highligthing
-export CHEATCOLORS=true
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-if [ ! -f $HOME/$TERM.ti  ]; then
-    infocmp $HOME/$TERM.ti | sed 's/kbs=^[hH]/kbs=\\177/' > $HOME/$TERM.ti
-    tic $HOME/$TERM.ti
-fi
+alias fullscreen='wmctrl -r :ACTIVE: -b add,fullscreen'
+alias nofullscreen='wmctrl -r :ACTIVE: -b remove,fullscreen'
+alias rms='ssh r5sharif@linux.student.cs.uwaterloo.ca'
+alias open="xdg-open"
+alias woman="man"
+alias gs="git status"
+alias gb="git checkout -b"
+alias gc="git commit"
+alias ga="git add"
+alias checkout="git checkout"
+alias branch="git branch"
+alias python="python3"
+alias song='spotifycli'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /opt/dev/dev.sh ] && source /opt/dev/dev.sh
-export PATH=$PATH:/Applications/nwjs.app/Contents/MacOS
-
-###########################
-# Functions
-###########################
-function fast_git_branch_select {
-    branch="$(git branch | fzf-tmux -d 15)"
-    BRANCH_NAME="$(echo -e "${branch}" | sed -e 's/^[[:space:]]*//')"
-    git checkout $BRANCH_NAME
-}
-
-function fast_tmux_session_select {
-    session="$(tmux ls | fzf-tmux -d 15)"
-    SESSION_NAME="$(echo -e "${session}" | sed -e 's/^[[:space:]]*//' | sed -e 's/: .*//')"
-    tmux attach -t $SESSION_NAME
-}
-
-function git-nvim {
-    git status -s -u | fzf -m --ansi --preview-window "right:33%" --preview "echo {} | cut -d' ' -f 3 | xargs head -$LINES" | cut -d' ' -f 3 | xargs nvim
-}
-
-function push_upstram_origin {
-    BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
-    git push origin -u $BRANCH_NAME
-}
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export TERM=xterm-256color

@@ -7,8 +7,6 @@ Plug 'vim-scripts/tComment' "Comment easily with gcc
 Plug 'tomtom/tcomment_vim' "Comment easily with gcc
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'w0ng/vim-hybrid'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
@@ -31,10 +29,11 @@ Plug 'mattn/emmet-vim'
 Plug 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
 Plug 'docunext/closetag.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'klen/python-mode'
 Plug 'sheerun/vim-polyglot'
 Plug 'FredKSchott/CoVim'
 Plug 'danro/rename.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 call plug#end()
 
 syntax on
@@ -64,10 +63,6 @@ set clipboard=unnamed
 let g:clang_format#code_style = 'google'
 let g:syntastic_cpp_compiler = 'g++'
 let g:syntastic_cpp_compiler_options = '-std=c++11 -stdlib=libc++'
-let g:airline_right_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_left_alt_sep= ''
-let g:airline_left_sep = ''
 let s:cterm_termbg = 237
 " autocmd FileType cpp ClangFormatAutoEnable   " Toggle auto formatting
 if filereadable(expand("~/.vimrc_background"))
@@ -106,9 +101,6 @@ set splitbelow                            " New split windows to the bottom
 set comments=sl:/*,mb:*,elx:*/            " auto format comment blocks
 set modelines=1                           " Last line reserved for vim actions
 set linebreak                             " Wrap lines at convenient points
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='base16'
 
 set clipboard=unnamed                     " Use OS clipboard
 scriptencoding utf-8                      " Default to UTF-8 encoding
