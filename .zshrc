@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1"  ] && [ -s $BASE16_SHELL/profile_helper.sh  ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-eval `dircolors ~/.dir_colors/dircolors`
+# eval `dircolors ~/.dir_colors/dircolors`
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 
 PATH="$PATH:/usr/local/go/bin"
@@ -128,3 +128,4 @@ alias song='spotifycli'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export TERM=xterm-256color
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
