@@ -1,43 +1,65 @@
-call plug#begin('~/.vim/plugged')
+call plug#begin("/home/ridwanmsharif/.vim/plugged")
 
-Plug 'vim-syntastic/syntastic'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'rhysd/vim-clang-format'
-Plug 'vim-scripts/tComment' "Comment easily with gcc
-Plug 'tomtom/tcomment_vim' "Comment easily with gcc
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'w0ng/vim-hybrid'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
-" Plug 'scrooloose/syntastic' "Run linters and display errors etc
-Plug 'tpope/vim-surround' "easily surround things...just read docs for info
-Plug 'tomtom/tcomment_vim' "Comment easily with gcc
-Plug 'tpope/vim-rails'
-Plug 'vim-ruby/vim-ruby'
-Plug 'tpope/vim-fugitive'
-Plug 'rust-lang/rust.vim'
-Plug 'ervandew/supertab'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'jelera/vim-javascript-syntax'
-Plug 'airblade/vim-gitgutter'
-Plug 'chriskempson/base16-vim'
-Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' }
-Plug 'ap/vim-css-color', {'for': 'css'}"
-Plug 'mattn/emmet-vim'
-Plug 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
-Plug 'docunext/closetag.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'sheerun/vim-polyglot'
-Plug 'FredKSchott/CoVim'
-Plug 'danro/rename.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'vim-syntastic/syntastic'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'rhysd/vim-clang-format'
+  Plug 'vim-scripts/tComment' "Comment easily with gcc
+  Plug 'tomtom/tcomment_vim' "Comment easily with gcc
+  Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+  Plug 'w0ng/vim-hybrid'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'jiangmiao/auto-pairs' "MANY features, but mostly closes ([{' etc
+  " Plug 'scrooloose/syntastic' "Run linters and display errors etc
+  Plug 'tpope/vim-surround' "easily surround things...just read docs for info
+  Plug 'tomtom/tcomment_vim' "Comment easily with gcc
+  Plug 'tpope/vim-rails'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'tpope/vim-fugitive'
+  Plug 'rust-lang/rust.vim'
+  Plug 'ervandew/supertab'
+  Plug 'honza/vim-snippets'
+  Plug 'jelera/vim-javascript-syntax'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'chriskempson/base16-vim'
+  Plug 'letientai299/vim-react-snippets', { 'branch': 'es6' }
+  Plug 'ap/vim-css-color', {'for': 'css'}"
+  Plug 'mattn/emmet-vim'
+  Plug 'vim-scripts/matchit.zip' " % also matches HTML tags / words / etc
+  Plug 'docunext/closetag.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'FredKSchott/CoVim'
+  Plug 'danro/rename.vim'
+  " Add maktaba and bazel to the runtimepath.
+  " (The latter must be installed before it can be used.)
+  Plug 'google/vim-maktaba'
+  Plug 'bazelbuild/vim-bazel'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'preservim/nerdtree'
+  Plug 'scrooloose/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  " Plug 'govim/govim'
+
+  Plug 'junegunn/vim-easy-align'
+  Plug 'junegunn/vim-github-dashboard'
+
+  Plug 'godlygeek/tabular'
+  Plug 'michal-h21/vim-zettel'
+  Plug 'plasticboy/vim-markdown'
+  Plug 'vimwiki/vimwiki'
+  " Plug 'tbabej/taskwiki'
+  " Plug 'blindFS/vim-taskwarrior'
+
+  Plug 'google/vim-searchindex'
 
 call plug#end()
 
 syntax on
 filetype plugin indent on
+
 
 set number
 
@@ -115,6 +137,16 @@ highlight CursorLineNR cterm=bold ctermfg=226
 " set it to the first line when editing a git commit message
 au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 " Use an upright bar cursor in Insert mode, a block in normal
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+map <C-f> :NERDTreeToggle<CR>
 
 " Vim-Go {{{
   let g:go_highlight_functions = 1
@@ -229,3 +261,54 @@ au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
     nnoremap <leader>rt :call RunTags()<CR>
   " }}}
 " }}}
+"
+func GitGrep(...)
+  let save = &grepprg
+  set grepprg=git\ grep\ -n\ $*
+  let s = 'grep'
+  for i in a:000
+    let s = s . ' ' . i
+  endfor
+  exe s
+  let &grepprg = save
+endfun
+command -nargs=? G call GitGrep(<f-args>)
+
+func GitGrepWord()
+  normal! "zyiw
+  call GitGrep('-w -e ', getreg('z'))
+endf
+nmap <C-x>G :call GitGrepWord()<CR>
+
+" cscope
+set cscopetag
+set csto=1
+let $csPath="cscope.out"
+for ind in range(0, 5)
+    if filereadable($csPath)
+        let g:CCTreeCscopeDb = $csPath
+        cs add $csPath
+        break
+    endif
+    let $csPath = "../" . $csPath
+endfor
+
+" Empty value to disable preview window altogether
+let g:fzf_preview_window = ''
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
+
+" [Commands] --expect expression for directly executing the command
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+set csre

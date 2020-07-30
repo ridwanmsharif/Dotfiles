@@ -1,4 +1,5 @@
 # If you come from bash you might have to change your $PATH.
+#
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -101,6 +102,7 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 # eval `dircolors ~/.dir_colors/dircolors`
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+eval $(thefuck --alias)
 
 PATH="$PATH:/usr/local/go/bin"
 GOROOT="$HOME/go"
@@ -111,6 +113,8 @@ export PATH=$HOME/sys161/bin:$HOME/sys161/tools/bin:$PATH
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/usr/bin:/usr/local/bin:/usr/local/opt/texinfo/bin:$HOME/sys161/bin:$HOME/sys161/tools/bin:$PATH
 export PATH="$PATH:$GOPATH/native/clion-2019.2.1/bin"
+export PATH=$PATH:/usr/local/go/bin
+export PATH="$PATH:$HOME/bin"
 
 alias fullscreen='wmctrl -r :ACTIVE: -b add,fullscreen'
 alias nofullscreen='wmctrl -r :ACTIVE: -b remove,fullscreen'
@@ -125,7 +129,17 @@ alias checkout="git checkout"
 alias branch="git branch"
 alias python="python3"
 alias song='spotifycli'
+alias pbcopy="xclip -sel clip"
+alias f="fuck"
+alias ff="fuck -y"
+alias ccat="/bin/cat"
+alias cat="bat"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export TERM=xterm-256color
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+    source /etc/profile.d/vte.sh
+fi
